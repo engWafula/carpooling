@@ -48,17 +48,26 @@ router.post("/bookcar", async (req, res) => {
 });
 
 
-router.get("/getallbookings", async(req, res) => {
+router.get("/getallbookings/:userId", async(req, res) => {
+  const userId = req.params.userId;
 
-    try {
+  try {
+      const bookings = await Booking.find({ user: userId }).populate('car');
+      res.send(bookings);
+  } catch (error) {
+      return res.status(400).json(error);
+  }
+});
 
-        const bookings = await Booking.find().populate('car')
-        res.send(bookings)
-        
-    } catch (error) {
-        return res.status(400).json(error);
-    }
-  
+router.get("/getallbookingrequests", async(req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate('car')
+      .populate('user'); // Populate the user field as well
+    res.send(bookings);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
 });
 
 

@@ -124,7 +124,9 @@ button{
   bottom: 50%;
   transform: translateY(-50% , -50%);
   font-size:45px;
-  opacity: 0.2 !important;
+  /* opacity: 0.2 !important; */
+  color: #1F1F1F;
+  text-shadow: #1F1F1F;
   
 
 }

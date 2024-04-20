@@ -6,7 +6,22 @@ export const getAllCars=()=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-        const response = await axios.get('/api/cars/getallcars')
+        const response = await axios.get(`/api/cars/getallcars/${JSON.parse(localStorage.getItem("user"))._id}`)
+        dispatch({type: 'GET_ALL_CARS', payload:response.data})
+        dispatch({type: 'LOADING' , payload:false})
+    } catch (error) {
+        console.log(error)
+        dispatch({type: 'LOADING' , payload:false})
+    }
+
+}
+
+export const getAllCarsForBooking=()=>async dispatch=>{
+
+    dispatch({type: 'LOADING' , payload:true})
+
+    try {
+        const response = await axios.get(`/api/cars/getallcarstoBook/${JSON.parse(localStorage.getItem("user"))._id}`)
         dispatch({type: 'GET_ALL_CARS', payload:response.data})
         dispatch({type: 'LOADING' , payload:false})
     } catch (error) {
@@ -17,11 +32,11 @@ export const getAllCars=()=>async dispatch=>{
 }
 
 export const addCar=(reqObj)=>async dispatch=>{
-
+   console.log(reqObj,"am object gfjhfhfhfhfh")
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('https://car-rental-xi-eight.vercel.app/api/cars/addcar' , reqObj)
+         await axios.post('http://localhost:5000/api/cars/addcar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('New car added successfully')
@@ -41,7 +56,7 @@ export const editCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('https://car-rental-xi-eight.vercel.app/api/cars/editcar' , reqObj)
+         await axios.post('http://localhost:5000/api/cars/editcar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('Car details updated successfully')
@@ -61,7 +76,7 @@ export const deleteCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('https://car-rental-xi-eight.vercel.app/api/cars/deletecar' , reqObj)
+         await axios.post('http://localhost:5000/api/cars/deletecar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('Car deleted successfully')

@@ -4,7 +4,7 @@ dotenv.config();
 
 function connectDB(){
 
-    mongoose.connect(process.env.MONGO_URL , {useUnifiedTopology: true , useNewUrlParser: true})
+    mongoose.connect("mongodb+srv://carpooling:carpooling@cluster0.odt0exk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" , {useUnifiedTopology: true , useNewUrlParser: true})
 
     const connection = mongoose.connection
 

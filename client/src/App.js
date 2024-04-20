@@ -12,6 +12,7 @@ import UserBookings from './pages/UserBookings';
 import AddCar from './pages/AddCar';
 import AdminHome from './pages/AdminHome';
 import EditCar from './pages/EditCar';
+import BookingRequests from './pages/BookingRequests';
 
 export const ProtectedRoute = ({ children }) => {
   
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     path: "userbookings",
     element: <ProtectedRoute><UserBookings/></ProtectedRoute>
   },{
+    path: "bookingRequests",
+    element: <ProtectedRoute><BookingRequests/></ProtectedRoute>
+  },
+  {
     path: "addcar",
     element: <ProtectedRoute><AddCar/></ProtectedRoute>
   },{

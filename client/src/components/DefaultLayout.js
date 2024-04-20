@@ -7,28 +7,36 @@ function DefaultLayout(props) {
   const menu = (
     <Menu>
         <Menu.Item>
-        <a
+        <Link
          
-          href="/"
+          to="/"
         >
           Home
-        </a>
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <Link
           
-          href="/userbookings"
+          to="/userbookings"
         >
           Bookings
-        </a>
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <a
-         
-          href="/admin"
+        <Link
+          
+          to="/bookingRequests"
         >
-          Admin
-        </a>
+          Ride requests
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+         
+          to="/addcar"
+        >
+          Car Rides
+        </Link>
       </Menu.Item>
       <Menu.Item onClick={()=>{
           localStorage.removeItem('user');
@@ -44,7 +52,7 @@ function DefaultLayout(props) {
           <Row gutter={16} justify='center'>
               <Col lg={20} sm={24} xs={24}>
               <div className="d-flex justify-content-between">
-             <h1 ><b><Link to='/' style={{color:'slateblue'}}>Car Rental</Link></b></h1>
+             <h1 ><b><Link to='/' style={{color:'slateblue'}}>Car Pooling</Link></b></h1>
 
           <Dropdown overlay={menu} placement="bottomCenter">
             <Button>{user.username}</Button>

@@ -12,9 +12,9 @@ function AddCar() {
     function onFinish(values){
 
          values.bookedTimeSlots=[]
+         values.owner = JSON.parse(localStorage.getItem("user"))._id
 
-         dispatch(addCar(values))
-         console.log(values)
+        dispatch(addCar(values))
     }
 
     return (

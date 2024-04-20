@@ -1,6 +1,6 @@
-# Car Rental Project
+# Car Pooling Project
 
-The Car Rental project is a comprehensive MERN stack web application tailored for small rental companies. It encompasses end-to-end functionality, including user authentication, booking management, and admin features. This application is built using Node.js, Express.js, React.js, Redux, MongoDB, and Mongoose.
+The Car Pooling project is a comprehensive MERN stack web application tailored for small rental companies. It encompasses end-to-end functionality, including user authentication, booking management, and admin features. This application is built using Node.js, Express.js, React.js, Redux, MongoDB, and Mongoose.
 
 ## Project Features
 
@@ -10,7 +10,7 @@ The Car Rental project is a comprehensive MERN stack web application tailored fo
 
 ## Live Link
 
-[Click here to visit Car Rental](<https://car-rental-p1wz.vercel.app/>)
+[Click here to visit Car Pooling](<https://car-rental-p1wz.vercel.app/>)
 
 ## How to Use
 
@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-4. Open your browser and visit `http://localhost:3000` to start using Car Rental.
+4. Open your browser and visit `http://localhost:3000` to start using Car Pooling.
 
 ## Project Structure
 

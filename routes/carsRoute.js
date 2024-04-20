@@ -2,9 +2,21 @@ const express = require("express");
 const router = express.Router();
 const Car = require("../models/carModel");
 
-router.get("/getallcars", async (req, res) => {
+router.get("/getallcars/:userId", async (req, res) => {
   try {
-    const cars = await Car.find();
+    const userId = req.params.userId;
+    console.log(userId,"AM THE USERId")
+    const cars = await Car.find({ owner: userId });
+    res.send(cars);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.get("/getallcarstoBook/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const cars = await Car.find({ owner: { $ne: userId } });
     res.send(cars);
   } catch (error) {
     return res.status(400).json(error);
@@ -13,6 +25,7 @@ router.get("/getallcars", async (req, res) => {
 
 router.post("/addcar", async (req, res) => {
   try {
+    
     const newcar = new Car(req.body);
     await newcar.save();
     res.send("Car added successfully");
