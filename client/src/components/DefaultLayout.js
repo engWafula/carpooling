@@ -33,7 +33,7 @@ function DefaultLayout(props) {
       <Menu.Item>
         <Link
          
-          to="/addcar"
+          to="/admin"
         >
           Car Rides
         </Link>
