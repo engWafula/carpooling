@@ -4,7 +4,7 @@ export const bookCar = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-     await axios.post("api/bookings/bookcar" , reqObj);
+     await axios.post("https://carpooling-ipmg.onrender.com/api/bookings/bookcar" , reqObj);
 
     dispatch({ type: "LOADING", payload: false });
     message.success("Your car booked successfully");
@@ -25,7 +25,7 @@ export const getAllBookings=()=>async dispatch=>{
   dispatch({type: 'LOADING' , payload:true})
 
   try {
-      const response = await axios.get(`api/bookings/getallbookings/${JSON.parse(localStorage.getItem("user"))._id}`)
+      const response = await axios.get(`https://carpooling-ipmg.onrender.com/api/bookings/getallbookings/${JSON.parse(localStorage.getItem("user"))._id}`)
       dispatch({type: 'GET_ALL_BOOKINGS', payload:response.data})
       dispatch({type: 'LOADING' , payload:false})
   } catch (error) {
@@ -41,7 +41,7 @@ export const getAllBookingRequests=()=>async dispatch=>{
   dispatch({type: 'LOADING' , payload:true})
 
   try {
-      const response = await axios.get("api/bookings/getallbookingrequests")
+      const response = await axios.get("https://carpooling-ipmg.onrender.com/api/bookings/getallbookingrequests")
       dispatch({type: 'GET_ALL_BOOKINGS', payload:response.data})
       dispatch({type: 'LOADING' , payload:false})
   } catch (error) {

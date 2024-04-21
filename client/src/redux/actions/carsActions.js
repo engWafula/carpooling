@@ -76,7 +76,7 @@ export const deleteCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('api/cars/deletecar' , reqObj)
+         await axios.post('https://carpooling-ipmg.onrender.com/api/cars/deletecar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('Car deleted successfully')
