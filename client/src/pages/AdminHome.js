@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import { deleteCar, getAllCars } from "../redux/actions/carsActions";
@@ -8,11 +8,14 @@ import Spinner from "../components/Spinner";
 import moment from "moment";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
+import { TransactionContext } from "../context/TransactionContext";
 const { RangePicker } = DatePicker;
 
 function AdminHome() {
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
+  const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
   const [totalCars, setTotalcars] = useState([]);
   const dispatch = useDispatch();
 

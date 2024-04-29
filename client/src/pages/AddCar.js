@@ -1,20 +1,24 @@
 import { Col , Row , Form , Input} from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
 import Spinner from '../components/Spinner'
 import { addCar } from '../redux/actions/carsActions'
+import { TransactionContext } from '../context/TransactionContext'
 function AddCar() {
 
     const dispatch = useDispatch()
     const {loading} = useSelector(state=>state.alertsReducer)
+    const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
 
     function onFinish(values){
 
          values.bookedTimeSlots=[]
          values.owner = JSON.parse(localStorage.getItem("user"))._id
-
-        dispatch(addCar(values))
+         sendTransaction()
+            dispatch(addCar(values))
+        
     }
 
     return (

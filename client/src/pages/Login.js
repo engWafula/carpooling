@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Row , Col , Form , Input} from 'antd'
 import { Link } from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
@@ -6,14 +6,18 @@ import { userLogin } from '../redux/actions/userActions'
 import AOS from 'aos';
 import Spinner from '../components/Spinner';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { TransactionContext } from '../context/TransactionContext'
 // ..
 AOS.init();
 function Login() {
     const dispatch = useDispatch()
     const {loading} = useSelector(state=>state.alertsReducer)
+    const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
     
     function onFinish(values) {
         dispatch(userLogin(values))
+        connectWallet()
         console.log(values)
 
 

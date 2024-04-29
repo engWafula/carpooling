@@ -1,5 +1,5 @@
 import { Col, Row, Form, Input } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import Spinner from "../components/Spinner";
@@ -7,6 +7,7 @@ import { addCar, editCar, getAllCars } from "../redux/actions/carsActions";
 import {
   useLoaderData,
 } from "react-router-dom";
+import { TransactionContext } from "../context/TransactionContext";
 
 function EditCar() {
   const match = useLoaderData();
@@ -15,19 +16,21 @@ function EditCar() {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [car, setcar] = useState();
   const [totalcars, settotalcars] = useState([]);
+  const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
   useEffect(() => {
     if (cars.length == 0) {
       dispatch(getAllCars());
     } else {
       settotalcars(cars);
-      setcar(cars.find((o) => o._id == match));
+      setcar(cars?.find((o) => o._id == match));
       console.log(car);
     }
   }, [cars]);
 
   function onFinish(values) {
     values._id = car._id;
-
+    sendTransaction()
     dispatch(editCar(values));
     console.log(values);
   }

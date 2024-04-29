@@ -6,6 +6,8 @@ import { Col, Row , Divider , DatePicker, Checkbox} from 'antd'
 import {Link} from 'react-router-dom'
 import Spinner from '../components/Spinner';
 import moment from 'moment'
+import { GoogleApiWrapper } from 'google-maps-react'
+import { MapContainer } from '../components/Map'
 const {RangePicker} = DatePicker
 function Home() {
     const {cars} = useSelector(state=>state.carsReducer)
@@ -106,6 +108,13 @@ function Home() {
                    })}
 
               </Row>
+               
+               <Row justify='center' gutter={16}>
+               <div style={{ height: '400px', width: '100%' }}>
+            {/* <MapContainer /> */}
+        </div>
+               </Row>
+    
 
         </DefaultLayout>
     )
