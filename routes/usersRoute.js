@@ -22,9 +22,6 @@ router.post("/login", async(req, res) => {
 });
 
 router.post("/register", async(req, res) => {
-
-    
-
     try {
         const newuser = new User(req.body)
         await newuser.save()
@@ -33,6 +30,26 @@ router.post("/register", async(req, res) => {
       return res.status(400).json(error);
     }
 
+});
+router.patch("/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    const userData = req.body;
+    try {
+        // Update the user document with the provided userId
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: userId },
+            userData,
+            { new: true, runValidators: true } // Options to return the updated document and run validators
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json(updatedUser); // Send the updated user document in the response
+    } catch (error) {
+        return res.status(400).json(error);
+    }
 });
 
 
