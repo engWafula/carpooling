@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import MapContainer from "../components/Map";
 const { RangePicker } = DatePicker;
 function BookingCar() {
   const match = useLoaderData();
@@ -31,7 +32,7 @@ function BookingCar() {
     if (cars.length == 0) {
       dispatch(getAllCars());
     } else {
-      setcar(cars.find((o) => o._id == match));
+      setcar(cars?.find((o) => o._id == match));
     }
   }, [cars]);
 
@@ -73,12 +74,18 @@ function BookingCar() {
       {loading && <Spinner />}
       <Row
         justify="center"
-        className="d-flex align-items-center"
+        className="d-flex align-items-center flex-col"
         style={{ minHeight: "90vh" }}
       >
         <Col lg={10} sm={24} xs={24} className='p-3'>
           <img src={car.image} className="carimg2 bs1 w-100" data-aos='flip-left' data-aos-duration='1500'/>
         </Col>
+
+        <Col justify='center' gutter={10}> 
+               <div style={{ width:"100%", display:"flex", alignItems:"center",justifyContent:"center" }}>
+             <MapContainer data={car} /> 
+        </div>
+             </Col>   
 
         <Col lg={10} sm={24} xs={24} className="text-right">
           <Divider type="horizontal" dashed>
@@ -177,6 +184,7 @@ function BookingCar() {
           </Modal>
         )}
       </Row>
+   
     </DefaultLayout>
   );
 }

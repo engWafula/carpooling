@@ -1,5 +1,5 @@
 import { Col , Row , Form , Input} from 'antd'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
 import Spinner from '../components/Spinner'
@@ -8,18 +8,37 @@ import { TransactionContext } from '../context/TransactionContext'
 function AddCar() {
 
     const dispatch = useDispatch()
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
     const {loading} = useSelector(state=>state.alertsReducer)
     const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
 
-
-    function onFinish(values){
+   async function onFinish(values){
 
          values.bookedTimeSlots=[]
          values.owner = JSON.parse(localStorage.getItem("user"))._id
-         sendTransaction()
-            dispatch(addCar(values))
+         values.latitude = latitude
+         values.longitude = longitude
+        sendTransaction()
+             dispatch(addCar(values))
         
     }
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              setLatitude(position.coords.latitude);
+              setLongitude(position.coords.longitude);
+            },
+            (error) => {
+              console.error('Error getting geolocation:', error);
+            }
+          );
+        } else {
+          console.error('Geolocation is not supported by this browser.');
+        }
+      }, []);
 
     return (
         <DefaultLayout>

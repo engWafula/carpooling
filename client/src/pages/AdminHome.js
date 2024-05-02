@@ -9,6 +9,7 @@ import moment from "moment";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
 import { TransactionContext } from "../context/TransactionContext";
+import { userUpdate } from "../redux/actions/userActions";
 const { RangePicker } = DatePicker;
 
 function AdminHome() {
@@ -23,9 +24,13 @@ function AdminHome() {
     dispatch(getAllCars());
   }, []);
 
+  
+
   useEffect(() => {
     setTotalcars(cars);
   }, [cars]);
+
+
 
   return (
     <DefaultLayout>

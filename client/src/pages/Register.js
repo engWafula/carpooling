@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import {useDispatch , useSelector} from 'react-redux'
@@ -6,14 +6,17 @@ import { userRegister } from "../redux/actions/userActions";
 import AOS from 'aos';
 import Spinner from '../components/Spinner';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { TransactionContext } from "../context/TransactionContext";
 // ..
 AOS.init()
 function Register() {
   const dispatch = useDispatch()
   const {loading} = useSelector(state=>state.alertsReducer)
+      const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
     function onFinish(values) {
-           dispatch(userRegister(values))
-           console.log(values)
+      values.address = currentAccount
+         dispatch(userRegister(values))
     }
 
   return (
@@ -54,7 +57,17 @@ function Register() {
               <Input />
             </Form.Item>
 
-            <button className="btn1 mt-2 mb-3">Register</button>
+            {!currentAccount && <button className="btn1 mt-2 mb-3" onClick={connectWallet}>Connect to MetaMask</button>}
+            {currentAccount && (
+              <div>
+              <h6 style={{color:"white"}}> Metamask Address</h6>
+            <p style={{color:"white"}}>{currentAccount}</p>
+
+            </div>
+            )}
+            <br />
+
+            <button type="submit" className="btn1 mt-2 mb-3">Register</button>
             <br />
 
             <Link to="/login">Click Here to Login</Link>

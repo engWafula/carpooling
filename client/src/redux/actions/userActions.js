@@ -41,3 +41,26 @@ export const userRegister=(reqObj)=>async dispatch=>{
         dispatch({type: 'LOADING' , payload:false})
     }
 }
+
+
+
+export const userUpdate=(reqObj)=>async dispatch=>{
+    
+    dispatch({type: 'LOADING' , payload:true})
+
+    try {
+        const response = await axios.patch(`https://carpooling-ipmg.onrender.com/api/users/${JSON.parse(localStorage.getItem("user"))._id}` , reqObj)
+        message.success('Registration successfull')
+        setTimeout(() => {
+            window.location.href='/login'
+         
+        }, 500);
+       
+        dispatch({type: 'LOADING' , payload:false})
+        
+    } catch (error) {
+        console.log(error)
+        message.error('Something went wrong')
+        dispatch({type: 'LOADING' , payload:false})
+    }
+}

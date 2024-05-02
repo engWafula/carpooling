@@ -16,7 +16,7 @@ const createEthereumContract = () => {
 };
 
 export const TransactionsProvider = ({ children }) => {
-  const [formData, setformData] = useState({ addressTo: "0x0DA391a1F86897F50Bc7Dd405354266cC8D23893", amount: "0.00000004", keyword: "uhrhrh", message: "yoirhr" });
+  const [formData, setformData] = useState({ addressTo: "0xFE3531f5c82C095E9c76Aae3952923E88020Da9b", amount: "0.0000000000004", keyword: "uhrhrh", message: "yoirhr" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
@@ -130,6 +130,7 @@ export const TransactionsProvider = ({ children }) => {
 
         setTransactionCount(transactionsCount.toNumber());
         window.location.reload();
+        return transactionHash.hash
       } else {
         console.log("No ethereum object");
       }

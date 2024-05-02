@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react'
+import React , {useState,useEffect, useContext} from 'react'
 import { useSelector , useDispatch } from 'react-redux'
 import DefaultLayout from '../components/DefaultLayout'
 import { getAllCars, getAllCarsForBooking } from '../redux/actions/carsActions'
@@ -9,17 +9,27 @@ import MapContainer from '../components/Map';
 
 import moment from 'moment'
 import { GoogleApiWrapper } from 'google-maps-react'
+import { TransactionContext } from '../context/TransactionContext'
+import { userUpdate } from '../redux/actions/userActions'
 const {RangePicker} = DatePicker
 function Home() {
     const {cars} = useSelector(state=>state.carsReducer)
     const {loading} = useSelector(state=>state.alertsReducer)
     const [totalCars , setTotalcars] = useState([])
     const dispatch = useDispatch()
+    const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
+
     
 
     useEffect(() => {
         dispatch(getAllCarsForBooking())
     }, [])
+
+
+    // useEffect(() => {
+    //     connectWallet()
+    //     dispatch(userUpdate({address:currentAccount}))
+    // }, [])
 
     useEffect(() => {
 
@@ -108,13 +118,13 @@ function Home() {
                        </Col>
                    })}
 
-              </Row>
+              </Row> 
                
-                <Row  justify='center' gutter={16}> 
-               <div style={{ height: '400px', width: '100%',display:"flex", alignItems:"center",justifyContent:"center" }}>
-             <MapContainer /> 
+                {/* <Row  justify='center' gutter={10}> 
+               <div style={{ width:"100%", display:"flex", alignItems:"center",justifyContent:"center" }}>
+             <MapContainer data={totalCars} /> 
         </div>
-             </Row> 
+             </Row>   */}
     
 
         </DefaultLayout>

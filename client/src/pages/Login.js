@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import {Row , Col , Form , Input} from 'antd'
 import { Link } from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
-import { userLogin } from '../redux/actions/userActions'
+import { userLogin, userUpdate } from '../redux/actions/userActions'
 import AOS from 'aos';
 import Spinner from '../components/Spinner';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
@@ -17,11 +17,13 @@ function Login() {
     
     function onFinish(values) {
         dispatch(userLogin(values))
-        connectWallet()
-        console.log(values)
 
+        if(!currentAccount){
+            connectWallet()
+        }
 
  }
+
     return (
         <div className='login'>
             {loading && (<Spinner />)}
