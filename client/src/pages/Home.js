@@ -94,7 +94,7 @@ function Home() {
               
               <Row justify='center' gutter={16}>
 
-                   {totalCars.map(car=>{
+                   {totalCars?.map(car=>{
                        return <Col lg={5} sm={24} xs={24}>
                             <div className="car p-2 bs1">
                                <img src={car?.image} className="carimg"/>
