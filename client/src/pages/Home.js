@@ -75,7 +75,7 @@ function Home() {
 
     }
 
-    console.log(totalCars,"AHAHAHA")
+    console.log(cars,"AHAHAHA>>>")
 
     return (
         <DefaultLayout>
