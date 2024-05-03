@@ -6,7 +6,7 @@ export const getAllCars=()=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-        const response = await axios.get(`api/cars/getallcars/${JSON.parse(localStorage.getItem("user"))._id}`)
+        const response = await axios.get(`https://carpooling-ipmg.onrender.com/api/cars/getallcars/${JSON.parse(localStorage.getItem("user"))._id}`)
         dispatch({type: 'GET_ALL_CARS', payload:response.data})
         dispatch({type: 'LOADING' , payload:false})
     } catch (error) {
@@ -21,7 +21,7 @@ export const getAllCarsForBooking=()=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-        const response = await axios.get(`api/cars/getallcarstoBook/${JSON.parse(localStorage.getItem("user"))._id}`)
+        const response = await axios.get(`https://carpooling-ipmg.onrender.com/api/cars/getallcarstoBook/${JSON.parse(localStorage.getItem("user"))._id}`)
         dispatch({type: 'GET_ALL_CARS', payload:response.data})
         dispatch({type: 'LOADING' , payload:false})
     } catch (error) {
@@ -36,7 +36,7 @@ export const addCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('api/cars/addcar' , reqObj)
+         await axios.post('https://carpooling-ipmg.onrender.com/api/cars/addcar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('New car added successfully')
@@ -56,7 +56,7 @@ export const editCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('api/cars/editcar' , reqObj)
+         await axios.post('https://carpooling-ipmg.onrender.com/api/cars/editcar' , reqObj)
        
          dispatch({type: 'LOADING' , payload:false})
          message.success('Car details updated successfully')
