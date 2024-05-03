@@ -56,7 +56,7 @@ const MapContainer = ({ data }) => {
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={9}
+        zoom={10}
         center={st}
       >
 
