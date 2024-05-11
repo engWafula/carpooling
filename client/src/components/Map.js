@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow, DirectionsService, DirectionsRenderer, } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -16,7 +17,7 @@ const MapContainer = ({ data }) => {
   console.log(data,"DADAFFA");
   const [st, setSt] = useState({ lat: 0, lng: 0 });
   const [selectedMarker, setSelectedMarker] = useState(null);
-
+  
   const history = useNavigate();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyDNhv1oWgIRBgv0DhUUF4vIeNbfYZ0Arzg',
@@ -64,10 +65,19 @@ const MapContainer = ({ data }) => {
           <Marker position={st} />
       
 
-          <Marker
+          {/* <Marker
             position={{ lat: data.latitude, lng: data.longitude }}
             onClick={() => setSelectedMarker(data)}
-          />
+          /> */}
+
+<Marker
+  position={{ lat: data.latitude, lng: data.longitude }}
+  onClick={() => setSelectedMarker(data)}
+  icon={{
+    url: "https://www.svgrepo.com/show/10210/car.svg",
+    scaledSize: new window.google.maps.Size(30, 30), // Adjust the size of the icon
+  }}
+/>
 
  {st && (
           <Polyline
