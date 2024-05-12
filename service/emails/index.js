@@ -1,6 +1,7 @@
-import userModel from '../../models/userModel';
 
 const nodemailer = require('nodemailer');
+const userModel = require('../../models/userModel');
+
 const ejs = require('ejs');
 const path = require('path');
 
@@ -52,4 +53,5 @@ const sendEmails = async (email,message) => {
   }
 };
 
-export default sendEmails
+
+module.exports = sendEmails
