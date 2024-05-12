@@ -38,8 +38,9 @@ router.post("/bookcar", async (req, res) => {
       car.bookedTimeSlots.push(req.body.bookedTimeSlots);
 
       await car.save();
-      res.send("Your booking is successfull");
       await sendEmails(newbooking.user.email,"Booking successfull")
+
+      res.send("Your booking is successfull");
     // } else {
     //   return res.status(400).json(error);
     // }
