@@ -3,7 +3,7 @@ const router = express.Router();
 const Booking = require("../models/bookingModel");
 const Car = require("../models/carModel");
 const { v4: uuidv4 } = require("uuid");
-const { default: sendEmails } = require("../service/emails");
+const {sendEmails} = require("../service/emails");
 const stripe = require("stripe")(
   "sk_test_51NFtVGSAZAXtdYSkBaDemNewFODLyLvAZ4Cp8oCxI2m1ecvfG2C1cNpm1B6k6lwIQfD2f9Hxt53gG2hNGExnFVK100raNTKWo4"
 );
@@ -32,13 +32,14 @@ router.post("/bookcar", async (req, res) => {
     // if (payment) {
       req.body.transactionId = token.id;//payment.source.id;
       const newbooking = new Booking(req.body);
-      await newbooking.save();
+      const data  = (await (await newbooking.save()).populate("user"))
       const car = await Car.findOne({ _id: req.body.car }).populate("owner")
-      console.log(req.body.car);
       car.bookedTimeSlots.push(req.body.bookedTimeSlots);
 
       await car.save();
-      await sendEmails(newbooking.user.email,"Booking successfull")
+      console.log(data.car,"am the booking")
+      await sendEmails(data.user.username,"Booking successfull","Carpooling booking")
+      // await sendEmails(data.car.username,"Booking successfull","Carpooling booking")
 
       res.send("Your booking is successfull");
     // } else {

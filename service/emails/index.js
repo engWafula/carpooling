@@ -7,7 +7,7 @@ const path = require('path');
 
 
 
-const sendEmails = async (email,message) => {
+const sendEmails = async (email,message,subject) => {
   try {
     const user  = await userModel.findOne({email:email})
     const transporter = nodemailer.createTransport({
@@ -33,10 +33,10 @@ const sendEmails = async (email,message) => {
     };
 
     const html = await ejs.renderFile(templatePath, templateData);
-    const kodo =  "bkroland19"
+    const kodo =  "bkroland19@gmail.com"
 
     const mailOptions = {
-      from: `${kodo} Car pooling`, 
+      from: "Car pooling", 
       to: email,
       subject: subject,
       html: html
@@ -54,4 +54,4 @@ const sendEmails = async (email,message) => {
 };
 
 
-module.exports = sendEmails
+module.exports.sendEmails = sendEmails;
