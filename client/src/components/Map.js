@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow, DirectionsService, DirectionsRenderer, } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const libraries = ['places'];
 const mapContainerStyle = {
