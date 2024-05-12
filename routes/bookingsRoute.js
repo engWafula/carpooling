@@ -3,6 +3,7 @@ const router = express.Router();
 const Booking = require("../models/bookingModel");
 const Car = require("../models/carModel");
 const { v4: uuidv4 } = require("uuid");
+const { default: sendEmails } = require("../service/emails");
 const stripe = require("stripe")(
   "sk_test_51NFtVGSAZAXtdYSkBaDemNewFODLyLvAZ4Cp8oCxI2m1ecvfG2C1cNpm1B6k6lwIQfD2f9Hxt53gG2hNGExnFVK100raNTKWo4"
 );
