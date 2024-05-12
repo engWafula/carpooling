@@ -32,12 +32,13 @@ router.post("/bookcar", async (req, res) => {
       req.body.transactionId = token.id;//payment.source.id;
       const newbooking = new Booking(req.body);
       await newbooking.save();
-      const car = await Car.findOne({ _id: req.body.car });
+      const car = await Car.findOne({ _id: req.body.car }).populate("owner")
       console.log(req.body.car);
       car.bookedTimeSlots.push(req.body.bookedTimeSlots);
 
       await car.save();
       res.send("Your booking is successfull");
+      await sendEmails(newbooking.user.email,"Booking successfull")
     // } else {
     //   return res.status(400).json(error);
     // }
