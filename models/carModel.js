@@ -16,7 +16,9 @@ const carSchema = new mongoose.Schema({
 
     rentPerHour : {type : Number , required : true},
     latitude: { type: Number, required: true }, 
-    longitude: { type: Number, required: true }
+    longitude: { type: Number, required: true },
+    status: { type: String, default: "active" }  
+
 
 
 }, {timestamps : true}
