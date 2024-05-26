@@ -140,9 +140,9 @@ function BookingCar() {
               <StripeCheckout
                 shippingAddress
                 token={onToken}
-                currency='inr'
+                currency='ugx'
                 amount={totalAmount * 100}
-                stripeKey="pk_test_51NFtVGSAZAXtdYSkpJntFLfuU3dQNlk1BVqldJWCWQUyDqAtoE1wHVhRCB2GEnGurggdZOd1L08afXnaMN0H7qcO00yUPQevQp"
+                stripeKey="pk_test_51ORBhhFXDMzUT7pCy2vg3k1izyZXUEMfPMamC6GLHZr4NzCeghs1RKpykfn0gX2daL3PjXsW43tHGblBc4FSY5Sm002zv4pxYr"
               >
                   <button className="btn1">
                 Book Now
