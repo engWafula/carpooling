@@ -16,7 +16,7 @@ router.get("/getallcars/:userId", async (req, res) => {
 router.get("/getallcarstoBook/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
-    const cars = await Car.find({ owner: { $ne: userId } });
+    const cars = await Car.find({ owner: { $ne: userId },status:"active" });
     res.send(cars);
   } catch (error) {
     return res.status(400).json(error);
