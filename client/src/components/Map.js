@@ -19,7 +19,7 @@ const MapContainer = ({ data }) => {
   
   const history = useNavigate();
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyDNhv1oWgIRBgv0DhUUF4vIeNbfYZ0Arzg',
+    googleMapsApiKey: 'AIzaSyAHm77mGzhhruEWKb8kbSFhxzrN_SHErzo',
     libraries,
   });
 
